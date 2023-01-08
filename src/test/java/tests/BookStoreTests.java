@@ -1,13 +1,14 @@
 package tests;
 
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.*;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 
 
 public class BookStoreTests {
@@ -63,9 +64,33 @@ public class BookStoreTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
+                .body(matchesJsonSchemaInClasspath("shemas/generateToken_response_shema.json"))
                 .body("status", is("Success"))
                 .body("result", is("User authorized successfully."))
                 .body("token.size()", greaterThan(10));
 
     }
+
+//    @Test
+//    void generateTokenWithAllureListenerTest(){
+//        String data = "{ \"userName\": \"alex\", " +
+//                "\"password\": \"asdsad#frew_DFS2\" }";
+//
+//        given()
+//                .filter(new AllureRestAssured())
+//                .contentType(JSON)
+//                .body(data)
+//                .log().uri()
+//                .log().body()
+//                .when()
+//                .post("/Account/v1/GenerateToken")
+//                .then()
+//                .log().status()
+//                .log().body()
+//                .statusCode(200)
+//                .body("status", is("Success"))
+//                .body("result", is("User authorized successfully."))
+//                .body("token.size()", greaterThan(10));
+//
+//    }
 }
