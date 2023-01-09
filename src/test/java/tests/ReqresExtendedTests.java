@@ -55,8 +55,8 @@ public class ReqresExtendedTests {
     @Test
     void loginWithLombokModelTest() {
         LoginBodyLombokModel body = new LoginBodyLombokModel();
-        body.setEmail("eveууууу.holt@reqres.in");
-        body.setPassword("cсссссссссссссссссityslicka");
+        body.setEmail("eve.holt@reqres.in");
+        body.setPassword("cityslicka");
 
         LoginResponseLombokModel response = given()
                 .log().all()
