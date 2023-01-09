@@ -70,6 +70,8 @@ public class ReqresExtendedTests {
                 .statusCode(200)
                 .extract().as(LoginResponseLombokModel.class);
 
+
+
         assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
     }
 
